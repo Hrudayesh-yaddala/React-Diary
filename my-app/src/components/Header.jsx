@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import {Link,useMatch,useResolvedPath} from 'react-router-dom';
 
-
-function CustomLink({href,children,...props}){
-  const path=window.location.pathname
+function CustomLink({to,children,...props}){
+  const resolvedPath=useResolvedPath(to)
+  const isActive=useMatch({path:resolvedPath.pathname,end:true})
   return(
-    <div className={path===href ? "active" :""}>
-      <a href={href}{...props}>
+    <div className={isActive ? "active" :""}>
+      <Link to={to}{...props}>
         {children}
-      </a>
+      </Link>
     </div>
   )
 }
@@ -19,13 +20,14 @@ const Header = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
+  // #f3636f
   return (
-    <header className="bg-[#2C5F2D]">
+    <header className="bg-[#a86add]">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className=" ml-auto flex-shrink-0">
-              <a href="#" className="text-white text-lg">My Diary</a>
+              <Link to="/" className="text-white text-lg">My Diary</Link>
             </div>
           </div>
           <div className="hidden md:block">
@@ -35,10 +37,10 @@ const Header = () => {
                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">About</a>
                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Contact</a>
                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Compose</a> */}
-                <CustomLink href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Home</CustomLink>
-                <CustomLink href="/About" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">About</CustomLink>
-                <CustomLink href="/Contact" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Contact</CustomLink>
-                <CustomLink href="/Compose" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Compose</CustomLink>
+                <CustomLink to="/" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Home</CustomLink>
+                <CustomLink to="/About" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">About</CustomLink>
+                <CustomLink to="/Contact" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Contact</CustomLink>
+                <CustomLink to="/Compose" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Compose</CustomLink>
               </div>
             </div>
           </div>
