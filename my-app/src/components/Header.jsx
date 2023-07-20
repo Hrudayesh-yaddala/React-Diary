@@ -37,7 +37,7 @@ const Header = () => {
                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">About</a>
                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Contact</a>
                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Compose</a> */}
-                <CustomLink to="/" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Home</CustomLink>
+                <CustomLink to="/home" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Home</CustomLink>
                 <CustomLink to="/About" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">About</CustomLink>
                 <CustomLink to="/Contact" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Contact</CustomLink>
                 <CustomLink to="/Compose" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium">Compose</CustomLink>
@@ -47,7 +47,7 @@ const Header = () => {
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={toggleNavbar}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out">
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[] focus:outline-none focus:bg-[#923bdf] focus:text-white transition duration-150 ease-in-out">
               <svg
                 className="h-6 w-6"
                 stroke="currentColor"

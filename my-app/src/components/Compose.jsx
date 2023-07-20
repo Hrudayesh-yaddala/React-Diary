@@ -97,7 +97,7 @@ const Compose = () => {
       </div>
 
       <textarea
-        className={`w-full h-48 p-2  bg-transparent resize-none border border-gray-300 rounded ${fontFamily} text-${fontSize} text-${textAlign}`}
+        className={`w-full h-48 p-2  bg-transparent resize-none border border-gray-600 rounded  ${fontFamily} text-${fontSize} text-${textAlign}`}
         placeholder="Write your entry here..."
         value={comment}
         onChange={handleCommentChange}

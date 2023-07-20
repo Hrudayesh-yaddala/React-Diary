@@ -9,21 +9,25 @@ import Start from "./Start";
 import Register from "./Register";
 import Login from "./Login";
 import {Route,Routes} from 'react-router-dom';
+import ProtectedLayout from "./ProtectedLayout";
 
 function App(){
     return(
         <div className="flex flex-col min-h-screen">
-            <Header/>
+            {/* <Header/> */}
             <Routes>
-                <Route path="/" element={<Home/>} />
-                <Route path="/About" element={<About/>} />
-                <Route path="/Contact" element={<Contact/>} />
-                <Route path="/Compose" element={<Compose/>} />
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/" element={<Start/>}/>
+                <Route path="/" element={<ProtectedLayout/>}>
+                    <Route path="home" element={<Home/>} />
+                    <Route path="About" element={<About/>} />
+                    <Route path="Contact" element={<Contact/>} />
+                    <Route path="Compose" element={<Compose/>} />
+                </Route>
+
             </Routes>
-            <Footer/>
-            {/* <Start/> */}
             {/* <Register/> */}
-            {/* <Login/> */}
         </div>
     );
 }
