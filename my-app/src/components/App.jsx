@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Header from "./Header";
 import Home from "./Home";
@@ -10,7 +11,7 @@ import Register from "./Register";
 import Login from "./Login";
 import {Route,Routes} from 'react-router-dom';
 import ProtectedLayout from "./ProtectedLayout";
-
+import  { Toaster } from 'react-hot-toast';
 function App(){
     return(
         <div className="flex flex-col min-h-screen">
@@ -28,6 +29,7 @@ function App(){
 
             </Routes>
             {/* <Register/> */}
+            <Toaster />
         </div>
     );
 }
