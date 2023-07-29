@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import bgImage from '../Images/bgimage.jpg';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
-import axios from 'axios';
-
+import { useState } from "react";
+import bgImage from "../Images/bgimage.jpg";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 const Compose = () => {
   const navigate = useNavigate();
-  const [comment, setComment] = useState('');
-  const [fontFamily, setFontFamily] = useState('Arial');
+  const [comment, setComment] = useState("");
+  const [fontFamily, setFontFamily] = useState("Arial");
   const [fontSize, setFontSize] = useState(14);
-  const [textAlign, setTextAlign] = useState('left');
+  const [textAlign, setTextAlign] = useState("left");
   const [images, setImages] = useState([]);
   // const [savedEntry, setSavedEntry] = useState('');
-  
-  
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -28,36 +25,28 @@ const Compose = () => {
   const handleTextAlignChange = (e) => {
     setTextAlign(e.target.value);
   };
- 
+
   const handleImageUpload = (e) => {
     const files = e.target.files;
     setImages([...images, ...files]);
     console.log([...images, ...files]);
   };
-  
-  
-  const handleSaveEntry = async(e) => {
+
+  const handleSaveEntry = async (e) => {
     e.preventDefault();
-    const formData=new FormData();
+    const formData = new FormData();
     // formData.append("comment",comment);
     for (let i = 0; i < images.length; i++) {
-      formData.append(`imageUpload`, images[i]);
+      formData.append("images", images[i]);
     }
-    console.log(images.length);
-    console.log(formData.getAll("images"))
-    // const response = await axios.post("http://localhost:3000/upload",formData,{
-    //     headers : {
-    //       'Content-type' : 'application/json'
-    //     }
-    //     })
+    formData.append("comment", comment);
+    formData.append("date", currentDate);
     try {
-      const response = await axios.post("http://localhost:3000/upload", formData, {
-        // headers: {
-        //   // Do not set the 'Content-type' header for FormData
-        //   'Content-Type':'multipart/form-data'
-        // },
-      });
-  
+      const response = await axios.post(
+        "http://localhost:3000/upload",
+        formData
+      );
+
       console.log(response.data);
       // Handle the response data as needed
     } catch (error) {
@@ -65,18 +54,29 @@ const Compose = () => {
     }
   };
 
-  const currentDate = new Date().toLocaleDateString('en-US', {year: 'numeric',month: 'long',day: 'numeric',});
-  const currentDay = new Date().toLocaleDateString('en-US', {weekday: 'long',});
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const currentDay = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+  });
 
   return (
-    <div className="flex-grow p-4 border border-gray-300 rounded hover:bg-bgImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
-    style={{ backgroundImage: `url(${bgImage})` }}>
+    <div
+      className="flex-grow p-4 border border-gray-300 rounded hover:bg-bgImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div className="flex justify-between mb-4">
         <div>
           <div className="text-xl font-bold">{currentDate}</div>
           <div className="text-md">{currentDay}</div>
         </div>
-        <button className="px-5 py-3 text-white bg-[#a359e4] rounded-xl hover:bg-[#c496ec]" onClick={handleSaveEntry}>
+        <button
+          className="px-5 py-3 text-white bg-[#a359e4] rounded-xl hover:bg-[#c496ec]"
+          onClick={handleSaveEntry}
+        >
           Save
         </button>
       </div>
@@ -87,7 +87,11 @@ const Compose = () => {
         id="comment"
         value={comment}
         onChange={handleCommentChange}
-        style={{ fontFamily: fontFamily, fontSize: `${fontSize}px`, textAlign: textAlign }}
+        style={{
+          fontFamily: fontFamily,
+          fontSize: `${fontSize}px`,
+          textAlign: textAlign,
+        }}
       ></textarea>
 
       <div className="flex flex-col sm:flex-row sm:items-center mt-2">
@@ -147,19 +151,21 @@ const Compose = () => {
           </label>
           <input
             type="file"
-            id="imageUpload"
+            id="images"
             className="hidden"
             accept="image/*"
             multiple
             onChange={handleImageUpload}
           />
-          <button className="px-4 py-2 text-white bg-[#9b44e7] rounded hover:bg-[#a17ec0]" onClick={() => document.getElementById('imageUpload').click()}>
+          <button
+            className="px-4 py-2 text-white bg-[#9b44e7] rounded hover:bg-[#a17ec0]"
+            onClick={() => document.getElementById("images").click()}
+          >
             Upload
           </button>
         </div>
       </div>
-      
-      
+
       {/* {images.length > 0 && (
         <div className="mt-4 grid gap-4 grid-cols-2 sm:grid-cols-3">
           {images.map((image, index) => (

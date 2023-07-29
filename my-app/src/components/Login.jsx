@@ -91,6 +91,6 @@ const Login = () => {
   );
 };
 
-export default {Login,firstname};
+export default Login;
 
 

@@ -12,9 +12,6 @@
 //     </div>
 //   )
 // }
-
-
-
 // const Header = () => {
 //   const [isOpen, setIsOpen] = useState(false);
 //   const toggleNavbar = () => {
@@ -77,8 +74,7 @@
 //               <CustomLink to="/home" className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Home</CustomLink>
 //               <CustomLink to="/about" className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">About</CustomLink>
 //               <CustomLink to="/contact" className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Contact</CustomLink>
-//               <CustomLink to="/compose" className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Compose</CustomLink>
-                
+//               <CustomLink to="/compose" className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Compose</CustomLink>             
 //             </div>
 //           </div>
 //         )}
@@ -89,11 +85,16 @@
 
 // export default Header;
 
+
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import DropDown from './DropDown';
 // import {firstname} from './Login';
+
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const[OpenProfile,setOpenProfile]=useState(false);
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
@@ -107,46 +108,23 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="ml-auto flex-shrink-0">
-              <NavLink to="/home" className="text-white text-lg">
-                My Diary
-              </NavLink>
+              <NavLink to="/home" className="text-white text-lg">My Diary</NavLink>
             </div>
           </div>
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <NavLink
-                  to="/home"
-                  className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  activeClassName="active"
-                >
-                  Home
-                </NavLink>
-                <NavLink
-                  to="/About"
-                  className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  activeClassName="active"
-                >
-                  About
-                </NavLink>
-                <NavLink
-                  to="/Contact"
-                  className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  activeClassName="active"
-                >
-                  Contact
-                </NavLink>
-                <NavLink
-                  to="/Compose"
-                  className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"
-                  activeClassName="active"
-                >
-                  Compose
-                </NavLink>
+              <div className="ml-10 flex items-baseline space-x-4 flex items-right">
+                <NavLink to="/home"className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium" activeClassName="active">Home</NavLink>
+                <NavLink to="/About" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium" activeClassName="active">About</NavLink>
+                <NavLink to="/Contact"className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"activeClassName="active">Contact</NavLink>
+                <NavLink to="/Compose"className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"activeClassName="active">Compose</NavLink>
+                <label onClick={()=>setOpenProfile((prev)=>!prev)}>Ravi</label>
                 {/* <label>{firstname}</label> */}
               </div>
             </div>
           </div>
+          {OpenProfile && <DropDown/>}
+         
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={toggleNavbar}
@@ -185,7 +163,7 @@ const Header = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 sm:px-3">
               <NavLink
-                exact
+              exact
                 to="/home"
                 className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 activeClassName="active"
@@ -214,6 +192,8 @@ const Header = () => {
                 Compose
               </NavLink>
               {/* <label>{firstname}</label> */}
+             
+              
             </div>
           </div>
         )}
@@ -223,6 +203,5 @@ const Header = () => {
 };
 
 export default Header;
-
 
 
