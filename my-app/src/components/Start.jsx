@@ -27,16 +27,8 @@ const Start = () => {
       
       
       <div className="absolute md:top-12 right-10 mt-4 mr-10 md:mr-4 top-24">
-        <Link
-          className="px-4 py-2 text-white text-lg bg-blue-500 rounded hover:bg-blue-600 mr-2 sm:text-base lg:text-lg" to={"/login"}
-        >
-          Login
-        </Link>
-        <Link
-          className="px-4 py-2 text-blue-500 bg-transparent border border-blue-500 rounded hover:text-white hover:bg-blue-500 text-sm sm:text-base lg:text-lg" to={"/register"}
-        >
-          Sign Up
-        </Link>
+        <Link className="px-4 py-2 text-white text-lg bg-blue-500 rounded hover:bg-blue-600 mr-2 sm:text-base lg:text-lg" to={"/login"}>Login</Link>
+        <Link className="px-4 py-2 text-blue-500 bg-transparent border border-blue-500 rounded hover:text-white hover:bg-blue-500 text-sm sm:text-base lg:text-lg" to={"/register"}>Sign Up</Link>
       </div>
     </div>
   );

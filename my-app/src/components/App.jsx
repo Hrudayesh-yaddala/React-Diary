@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import About from "./About";
 import Compose from "./Compose";
 import Contact from "./Contact";
+import Entries from "./Entries";
 import Start from "./Start";
 import Register from "./Register";
 import Login from "./Login";
@@ -22,9 +23,11 @@ function App(){
                 <Route path="/" element={<Start/>}/>
                 <Route path="/" element={<ProtectedLayout/>}>
                     <Route path="home" element={<Home/>} />
-                    <Route path="About" element={<About/>} />
-                    <Route path="Contact" element={<Contact/>} />
-                    <Route path="Compose" element={<Compose/>} />
+                    <Route path="about" element={<About/>} />
+                    <Route path="contact" element={<Contact/>} />
+                    <Route path="compose" element={<Compose/>} />
+                    <Route path="entries" element={<Entries/>}/>
+
                 </Route>
 
             </Routes>

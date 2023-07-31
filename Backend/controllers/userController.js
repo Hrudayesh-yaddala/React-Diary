@@ -3,7 +3,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const DiaryEntry  = require("../models/Entry");
 const currentDate="wednesday";
-
+require("dotenv").config()
 const signup = async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
@@ -36,7 +36,12 @@ const signin=async(req,res)=>{
     if(isUser){
       const isPasswordValid = await bcrypt.compare(password,isUser.password);
       if(isPasswordValid){
-        return res.status(200).json({message:"Login successful",firstname:isUser.firstname});
+        const accessToken=await  jwt.sign({ userId:isUser._id }, 
+          process.env.ACCESS_TOKEN_SECRET,{
+          expiresIn: "1d",
+          })
+        return res.status(200).json({message:"Login successful",firstname:isUser.firstname,accessToken});
+       
       }
       else{
         return res.status(401).json({message:"Invalid Credentials"});
@@ -47,6 +52,7 @@ const signin=async(req,res)=>{
     }
   }
   catch(err){
+    console.log(err)
     return res.status(500).json({message:"Internal Server Error"});
   }
 }

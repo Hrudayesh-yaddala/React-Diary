@@ -38,6 +38,7 @@ const Login = () => {
         const { message, firstname } = response.data;
         toast.success(`${message}. Welcome, ${firstname}!`);
         toast.success("Redirecting to home");
+        // localStorage.setItem("token",response.data.accessToken)
         setTimeout(()=>{
           navigate("/home");
         },1000)

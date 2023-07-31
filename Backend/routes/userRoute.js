@@ -5,6 +5,7 @@ const multer = require("multer");
 // const {contactForm}=require("../controllers/userController");
 // const{handleImageUpload}=require("../controllers/userController")
 const userController = require("../controllers/userController");
+const { isAuthenticated } = require("../Middleware/verifyJWT");
 const router = express.Router();
 // router.route("/register").post(signup)
 // router.route("/login").post(signin)
@@ -21,6 +22,7 @@ const upload = multer({ storage: storage });
 // Define other routes for user registration, login, etc.
 router.post("/register", userController.signup);
 router.post("/login", userController.signin);
+router.use(isAuthenticated)
 router.post("/contact", userController.contactForm);
 router.post("/compose", upload.array("images", 5), userController.handleImageUpload);
 
