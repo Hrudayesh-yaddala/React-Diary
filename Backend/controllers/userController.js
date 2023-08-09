@@ -2,7 +2,10 @@ const Contact=require("../models/Contact");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const DiaryEntry  = require("../models/Entry");
-const currentDate="wednesday";
+const jwt=require("jsonwebtoken")
+// const currentDate="wednesday";
+
+
 require("dotenv").config()
 const signup = async (req, res) => {
   try {
@@ -25,7 +28,6 @@ const signup = async (req, res) => {
 };
 
 
-
 const signin=async(req,res)=>{
   try{
     const{email,password}=req.body;
@@ -38,10 +40,9 @@ const signin=async(req,res)=>{
       if(isPasswordValid){
         const accessToken=await  jwt.sign({ userId:isUser._id }, 
           process.env.ACCESS_TOKEN_SECRET,{
-          expiresIn: "1d",
+         expiresIn: "1d", 
           })
         return res.status(200).json({message:"Login successful",firstname:isUser.firstname,accessToken});
-       
       }
       else{
         return res.status(401).json({message:"Invalid Credentials"});
@@ -101,5 +102,26 @@ const handleImageUpload = async (req, res) => {
   }
 };
 
+const getAllEntries = async (req, res) =>{
+  try {
+    const entries = await DiaryEntry.find({});
+    return res.status(200).json({ entries });
+  } 
+  catch (error) {
+    console.error("Error fetching entries:", error);
+    return res.status(500).json({ error: "Failed to fetch entries" });
+  }
+};
 
-module.exports = {signup,signin,contactForm,handleImageUpload};
+const deleteEntry = async (req, res) => {
+  const entryId = req.params.id;
+  try {
+    await DiaryEntry.findByIdAndDelete(entryId);
+    return res.status(200).json({ message: "Entry deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting entry:", error);
+    return res.status(500).json({ error: "Failed to delete entry" });
+  }
+};
+
+module.exports = {signup,signin,contactForm,handleImageUpload,getAllEntries,deleteEntry};

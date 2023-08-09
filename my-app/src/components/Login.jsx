@@ -6,12 +6,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 
 
-
 const Login = () => {
-  // const [formData, setFormData] = useState({
-  //   email: "",
-  //   password: ""
-  // });
   const navigate = useNavigate();
   const [formData,setFormData] = useState({
     email : "",
@@ -35,10 +30,12 @@ const Login = () => {
       toast.success(response.data.message)
       if(response.status===400) toast.error("Fill all details");
       else if(response.status===200){
+        console.log("entered successfully")
         const { message, firstname } = response.data;
         toast.success(`${message}. Welcome, ${firstname}!`);
         toast.success("Redirecting to home");
-        // localStorage.setItem("token",response.data.accessToken)
+        localStorage.setItem("token",response.data.accessToken)
+        localStorage.setItem("firstname",response.data.firstname)
         setTimeout(()=>{
           navigate("/home");
         },1000)
@@ -51,7 +48,6 @@ const Login = () => {
     catch(err){
       console.log(err);
       toast.error(err.response.data.message);
-
     }
     
   };

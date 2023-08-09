@@ -89,6 +89,7 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import DropDown from './DropDown';
+// import { firstname } from '../../../Backend/controllers/userController';
 // import {firstname} from './Login';
 
 
@@ -104,7 +105,7 @@ const Header = () => {
 
   return (
     <header className="bg-[#a86add]">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="ml-auto flex-shrink-0">
@@ -118,7 +119,7 @@ const Header = () => {
                 <NavLink to="/About" className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium" activeClassName="active">About</NavLink>
                 <NavLink to="/Contact"className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"activeClassName="active">Contact</NavLink>
                 <NavLink to="/Compose"className="text-gray-300 hover:bg-[#912ee7] hover:text-white px-3 py-2 rounded-md text-md font-medium"activeClassName="active">Compose</NavLink>
-                <label onClick={()=>setOpenProfile((prev)=>!prev)}>Ravi</label>
+                <label className="text-black-900 hover:text-black px-3 py-2 rounded-md text-md font-medium cursor-pointer" onClick={()=>setOpenProfile((prev)=>!prev)}>{"Hi, "+localStorage.getItem("firstname")}</label>
                 {/* <label>{firstname}</label> */}
               </div>
             </div>
@@ -162,9 +163,7 @@ const Header = () => {
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 sm:px-3">
-              <NavLink
-              exact
-                to="/home"
+              <NavLink exact to="/home"
                 className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 activeClassName="active"
               >

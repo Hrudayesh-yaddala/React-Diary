@@ -46,11 +46,23 @@ const Compose = () => {
         "http://localhost:3000/upload",
         formData
       );
-
       console.log(response.data);
+      if(response.status===400) toast.error("Fill Entry field ");
+      if(response.status === 200)
+      {
+        toast.success("Entry Saved Successfully!!");
+          setTimeout(()=>{
+          navigate("/home");
+          },5000)
+          
+      }
+      if(response.status===500) toast.error("Internal server error");
+
       // Handle the response data as needed
     } catch (error) {
       // console.error("Error uploading images:", error);
+      console.log(err)
+      toast.error(err.response.data.message)
     }
   };
 

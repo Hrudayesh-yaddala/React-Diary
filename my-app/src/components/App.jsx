@@ -27,12 +27,9 @@ function App(){
                     <Route path="contact" element={<Contact/>} />
                     <Route path="compose" element={<Compose/>} />
                     <Route path="entries" element={<Entries/>}/>
-
                 </Route>
 
             </Routes>
-            {/* <Register/> */}
-            <Toaster />
         </div>
     );
 }

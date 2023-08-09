@@ -1,11 +1,10 @@
-import bgImage from '../Images/bgimage.jpg';
 import { React,useState } from 'react';
 import axios from 'axios';
 import backImage from '../Images/background.jpg';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
-const Contact = () => {
+const ContactAbout = () => {
   const navigate = useNavigate();
   const [data,setData] = useState({
     name : "",
@@ -44,8 +43,8 @@ const Contact = () => {
   }
 
   return (
-    <section className="text-gray-600 body-font relative hover:bg-startImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
-    style={{ backgroundImage: `url(${backImage})` }}>
+    <section className="text-gray-600 body-font relative hover:bg-startImage focus:bg-startImage  bg-cover bg-center bg-no-repeat">
+        <h1 className="text-3xl mb-1 font-bold title-font text-center">Feedback</h1>
       <div className="container px-5 py-12 mx-auto flex flex-wrap items-center justify-center">
         <div className="lg:w-1/2 md:w-1/2 bg-gray-300 h-96 overflow-hidden mb-8 lg:mb-0">
           <iframe
@@ -62,7 +61,7 @@ const Contact = () => {
           </div>
         </div>
         <div className="lg:w-5/12 md:w-1/2 bg-transparent flex flex-col md:ml-auto w-full md:py-8">
-          <h1 className="text-3xl mb-1 font-bold title-font text-center">Feedback</h1>
+          
           <p className="leading-relaxed mb-5 text-gray-900 text-center text-lg">
             Any questions or remarks? Just write us a message
           </p>
@@ -113,4 +112,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactAbout;

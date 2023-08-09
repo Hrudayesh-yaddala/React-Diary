@@ -85,7 +85,7 @@ const Register = () => {
           <input className="p-2 border border-gray-500 rounded-md" type="password" name="confirmpassword" id="confirmpassword" onChange={(e)=>setConfirmPassword(e.target.value)}/>
         </div>
 
-        <input type="submit" value="Register" className="bg-orange-400 p-2 text-white font-bold" />
+        <input type="submit" value="Register" className="bg-orange-400 p-2 text-white font-bold cursor-pointer" />
       </form>
       <p className="text-center mt-5">
         Already have an account?{" "}

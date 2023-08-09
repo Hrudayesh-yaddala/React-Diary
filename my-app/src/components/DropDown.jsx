@@ -1,11 +1,18 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 const DropDown = () => {
+  const handlelogout=()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("firstname");
+    window.location.reload();
+  
+  }
   const dropDownStyle = {
     position: 'absolute',
-    top: '4.5rem',
+    top: '3.7rem',
     right: '1.5rem',
-    width: '120px',
+    width: '100px',
     padding: '15px',
     borderRadius: '8px',
     backgroundColor: 'white',
@@ -31,7 +38,7 @@ const DropDown = () => {
       <ul className="flex flex-col gap-4">
         <li>Account</li>
         <li>Settings</li>
-        <li>Logout</li>
+        <li className='cursor-pointer' onClick={handlelogout}>Logout</li>
       </ul>
     </div>
   );
