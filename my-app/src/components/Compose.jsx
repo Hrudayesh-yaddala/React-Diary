@@ -43,7 +43,7 @@ const Compose = () => {
     formData.append("date", currentDate);
     try {
       const response = await axios.post(
-        "http://localhost:3000/upload",
+        "http://localhost:3000/compose",
         formData
       );
       console.log(response.data);
@@ -59,7 +59,7 @@ const Compose = () => {
       if(response.status===500) toast.error("Internal server error");
 
       // Handle the response data as needed
-    } catch (error) {
+    } catch (err) {
       // console.error("Error uploading images:", error);
       console.log(err)
       toast.error(err.response.data.message)
@@ -134,7 +134,7 @@ const Compose = () => {
             value={fontSize}
             onChange={handleFontSizeChange}
           >
-            <option value={12}>12</option>
+            <option value=  {12}>12</option>
             <option value={14}>14</option>
             <option value={16}>16</option>
             {/* Add more font size options as needed */}

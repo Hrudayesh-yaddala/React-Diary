@@ -124,4 +124,6 @@ const deleteEntry = async (req, res) => {
   }
 };
 
-module.exports = {signup,signin,contactForm,handleImageUpload,getAllEntries,deleteEntry};
+module.exports = {signup,signin,contactForm,handleImageUpload,getAllEntries,deleteEntry}
+
+

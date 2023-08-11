@@ -8,7 +8,9 @@ app.use(cors());
 const userRouter = require("./routes/userRoute");
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
-const { DiaryEntry } = require("./models/Entry");
+// const { DiaryEntry } = require("./models/Entry");
+const DiaryEntry = require("./models/Entry");
+
 
 cloudinary.config({
   cloud_name: "dk267s51l",
@@ -32,7 +34,7 @@ mongoose
 const storage = multer.diskStorage({});
 const upload = multer({ storage });
 
-app.post("/upload", upload.array("images", 5), async (req, res) => {
+app.post("/compose", upload.array("images", 5), async (req, res) => {
   const files = req.files;
   const uploadedImages = [];
 

@@ -21,6 +21,7 @@ const EntrySchema = new mongoose.Schema(
   }
 );
 
-const DiaryEntry = mongoose.model("DiaryEntry", EntrySchema);
-module.exports = { DiaryEntry };
+module.exports=new mongoose.model("DiaryEntry",EntrySchema);
+// const DiaryEntry = mongoose.model("DiaryEntry", EntrySchema);
+// module.exports = { DiaryEntry };
 

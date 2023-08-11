@@ -31,7 +31,7 @@ const Contact = () => {
           toast.success("Thank you for taking the time to contact us");
            setTimeout(()=>{
             navigate("/home");
-          },5000)
+          },3000)
           
         }
         if(response.status===500) toast.error("Internal server error");
