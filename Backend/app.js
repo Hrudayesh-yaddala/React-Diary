@@ -34,6 +34,20 @@ mongoose
 const storage = multer.diskStorage({});
 const upload = multer({ storage });
 
+app.get("/api/user/entries/:id", async (req, res) => {
+  try {
+    const entryId = req.params.id;
+    const entry = await DiaryEntry.findById(entryId);
+    if (!entry) {
+      return res.status(404).json({ error: "Entry not found" });
+    }
+    return res.status(200).json({ entry });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Failed to fetch entry" });
+  }
+});
+
 app.post("/compose", upload.array("images", 5), async (req, res) => {
   const files = req.files;
   const uploadedImages = [];

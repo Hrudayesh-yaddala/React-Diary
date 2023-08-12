@@ -6,3 +6,16 @@ export default defineConfig({
   plugins: [react()],
   server:{host:true}
 })
+
+
+
+
+// vite.config.js
+// import reactRefresh from '@vitejs/plugin-react-refresh';
+
+// export default {
+//   plugins: [reactRefresh()],
+//   server:{host:true}
+  
+//   // ... other configuration
+// };
