@@ -44,7 +44,9 @@ const Compose = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/compose",
-        formData
+        formData, {headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },}
       );
       console.log(response.data);
       if(response.status===400) toast.error("Fill Entry field ");

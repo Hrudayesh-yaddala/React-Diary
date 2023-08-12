@@ -89,10 +89,13 @@ const handleImageUpload = async (req, res) => {
       };
     });
 
+    console.log("Hello",req.userId)
+
     const newEntry = await DiaryEntry.create({
       currentDate,
       comment,
       images,
+      user: req.userId,
     });
 
     return res.status(200).json({ message: "Entry created", entry: newEntry });
@@ -104,7 +107,7 @@ const handleImageUpload = async (req, res) => {
 
 const getAllEntries = async (req, res) =>{
   try {
-    const entries = await DiaryEntry.find({});
+    const entries = await DiaryEntry.findById(userId).populate("entries");
     return res.status(200).json({ entries });
   } 
   catch (error) {

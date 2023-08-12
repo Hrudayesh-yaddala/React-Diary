@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const EntrySchema = new mongoose.Schema(
   {
@@ -9,6 +8,11 @@ const EntrySchema = new mongoose.Schema(
     comment: {
       type: String,
       required: [true, "Comment is required"],
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      // required: true,
     },
     images: [
       {
@@ -24,4 +28,3 @@ const EntrySchema = new mongoose.Schema(
 module.exports=new mongoose.model("DiaryEntry",EntrySchema);
 // const DiaryEntry = mongoose.model("DiaryEntry", EntrySchema);
 // module.exports = { DiaryEntry };
-

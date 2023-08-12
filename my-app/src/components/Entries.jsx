@@ -103,7 +103,6 @@
 // export default Entries;
 
 
-
 import backImage from '../Images/background.jpg';
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
@@ -145,9 +144,9 @@ const Entries = () => {
     <div className='bg-[#deb7ff] flex-grow text-center hover:bg-backImage focus:bg-startImage  bg-cover bg-center bg-no-repeat' style={{ backgroundImage: `url(${backImage})`}}>
       <div className="container mx-auto py-10">
         <div>
-          <h1 className="text-3xl font-semibold mb-6 text-center">{localStorage.getItem("firstname")+"'s"+" "+"Journal"}</h1>
-          <Link className="px-4 py-3 text-white text-lg bg-purple-300 bg-[#a86add] rounded hover:bg-purple-400 mr-2 sm:text-base lg:text-lg" to={"/compose"}>+ NEW ENTRY</Link>
-        </div>
+          <h1 className="text-3xl font-semibold mb-2 text-center">{localStorage.getItem("firstname")+"'s"+" "+"Journal"}</h1>
+          <div className='flex justify-end mb-3'><Link className="px-4 py-3 text-white text-lg bg-purple-300 bg-[#a86add] rounded hover:bg-purple-400 mr-2 sm:text-base lg:text-lg" to={"/compose"}>+ NEW ENTRY</Link></div>
+          </div>
         <table className="w-full border-collapse border border-gray-300">
           <thead className="bg-gray-100">
             <tr>
@@ -185,4 +184,3 @@ const Entries = () => {
 };
 export default Entries;
 // module.exports= {Entries,handleDeleteEntry};
-
