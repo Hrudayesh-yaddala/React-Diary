@@ -10,7 +10,7 @@ const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 // const { DiaryEntry } = require("./models/Entry");
 const DiaryEntry = require("./models/Entry");
-
+const { isAuthenticated } = require("./Middleware/verifyJWT");
 
 cloudinary.config({
   cloud_name: "dk267s51l",
@@ -18,7 +18,7 @@ cloudinary.config({
   api_secret: "gpwMKVwgMflyQIRncoQTmu3mRCg",
 });
 
-const mongoURI = process.env.MONGO_URL;
+const mongoURI = process.env.MONGODB_URL;
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
@@ -48,32 +48,38 @@ app.get("/api/user/entries/:id", async (req, res) => {
   }
 });
 
-app.post("/compose", upload.array("images", 5), async (req, res) => {
-  const files = req.files;
-  const uploadedImages = [];
+app.post(
+  "/compose",
+  isAuthenticated,
+  upload.array("images", 5),
+  async (req, res) => {
+    const files = req.files;
+    const uploadedImages = [];
 
-  try {
-    // Upload each image to Cloudinary
-    for (const file of files) {
-      const result = await cloudinary.uploader.upload(file.path);
-      uploadedImages.push(result.secure_url);
+    try {
+      // Upload each image to Cloudinary
+      for (const file of files) {
+        const result = await cloudinary.uploader.upload(file.path);
+        uploadedImages.push(result.secure_url);
+      }
+
+      // Create a new entry in the database with the uploaded images
+      const entry = new DiaryEntry({
+        date: req.body.date,
+        comment: req.body.comment,
+        images: uploadedImages,
+        user: req.userId,
+      });
+
+      await entry.save();
+
+      return res.status(200).json(entry);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Failed to upload images" });
     }
-
-    // Create a new entry in the database with the uploaded images
-    const entry = new DiaryEntry({
-      date: req.body.date,
-      comment: req.body.comment,
-      images: uploadedImages,
-    });
-
-    await entry.save();
-
-    return res.status(200).json(entry);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Failed to upload images" });
   }
-});
+);
 
 app.use("/api/user", userRouter);
 app.listen(3000, () => {

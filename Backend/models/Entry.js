@@ -12,11 +12,11 @@ const EntrySchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      // required: true,
+      required: true,
     },
     images: [
       {
-        type:String,
+        type: String,
       },
     ],
   },
@@ -25,6 +25,6 @@ const EntrySchema = new mongoose.Schema(
   }
 );
 
-module.exports=new mongoose.model("DiaryEntry",EntrySchema);
+module.exports = new mongoose.model("DiaryEntry", EntrySchema);
 // const DiaryEntry = mongoose.model("DiaryEntry", EntrySchema);
 // module.exports = { DiaryEntry };
