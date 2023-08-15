@@ -13,9 +13,9 @@ const DiaryEntry = require("./models/Entry");
 const { isAuthenticated } = require("./Middleware/verifyJWT");
 
 cloudinary.config({
-  cloud_name: "dk267s51l",
-  api_key: "728372577397244",
-  api_secret: "gpwMKVwgMflyQIRncoQTmu3mRCg",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret:process.env.api_secret,
 });
 
 const mongoURI = process.env.MONGO_URL;
