@@ -21,7 +21,7 @@ const Login = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      const response=await axios.post("http://localhost:3000/api/user/login",formData,{
+      const response=await axios.post("https://red-violet-goat-ring.cyclic.cloud/api/user/login",formData,{
         headers : {
           'Content-type' : 'application/json'
         }
