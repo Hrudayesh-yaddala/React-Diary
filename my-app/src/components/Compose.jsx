@@ -1,107 +1,114 @@
-// import React from "react";
+import { useState } from "react";
+import bgImage from "../Images/bgimage.jpg";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
-// function Compose(){
-//     return(
-//         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
-//         <div class="flex flex-col space-y-6">
-//           <div>
-//             <label for="date" class="block text-gray-700 font-medium mb-2">Date</label>
-//             <input type="text" id="date" name="date" placeholder="Select a date" class="w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 "/>
-//           </div>
-//           <div>
-//             <label for="memories" class="block text-gray-700 font-medium mb-2">Memories</label>
-//             <textarea id="memories" name="memories" rows="4" placeholder="Write your memories" class="w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-//           </div>
-//           <button class="mt-6 bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-md">Save</button>
-//         </div>
-//       </div>
-      
-  
-        
-//     );
-// }
-
-// export default Compose;
-
-import React, { useState } from 'react';
-import bgImage from '../Images/bgimage.jpg';
-import backImage from '../Images/background.jpg';
 const Compose = () => {
-  const [comment, setComment] = useState('');
-  const [fontFamily, setFontFamily] = useState('Arial');
+  const navigate = useNavigate();
+  const [comment, setComment] = useState("");
+  const [fontFamily, setFontFamily] = useState("Arial");
   const [fontSize, setFontSize] = useState(14);
-  const [textAlign, setTextAlign] = useState('left');
+  const [textAlign, setTextAlign] = useState("left");
   const [images, setImages] = useState([]);
-  const [backgroundImage, setBackgroundImage] = useState('https://picsum.photos/200');
-  const [savedEntry, setSavedEntry] = useState('');
+  // const [savedEntry, setSavedEntry] = useState('');
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
-
   const handleFontFamilyChange = (e) => {
     setFontFamily(e.target.value);
   };
-
   const handleFontSizeChange = (e) => {
     setFontSize(Number(e.target.value));
   };
-
   const handleTextAlignChange = (e) => {
     setTextAlign(e.target.value);
   };
 
   const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    const uploadedImages = files.map((file) => URL.createObjectURL(file));
-    setImages([...images, ...uploadedImages]);
+    const files = e.target.files;
+    setImages([...images, ...files]);
+    console.log([...images, ...files]);
   };
 
-  const handleSaveEntry = () => {
-    // Logic to save the diary entry
-    const entry = {
-      comment,
-      fontFamily,
-      fontSize,
-      textAlign,
-      images,
-      backgroundImage,
-    };
-    setSavedEntry(JSON.stringify(entry));
+  const handleSaveEntry = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    // formData.append("comment",comment);
+    for (let i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+    }
+    formData.append("comment", comment);
+    formData.append("date", currentDate);
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/compose",
+        formData, {headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },}
+      );
+      console.log(response.data);
+      if(response.status===400) toast.error("Fill Entry field ");
+      if(response.status === 200)
+      {
+        toast.success("Entry Saved Successfully!!");
+          setTimeout(()=>{
+          navigate("/home");
+          },2000)
+          
+      }
+      if(response.status===500) toast.error("Internal server error");
+
+      // Handle the response data as needed
+    } catch (err) {
+      // console.error("Error uploading images:", error);
+      console.log(err)
+      toast.error(err.response.data.message)
+    }
   };
 
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
-
-  const currentDay = new Date().toLocaleDateString('en-US', {
-    weekday: 'long',
+  const currentDay = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
   });
 
   return (
-    <div className="flex-grow p-4 border border-gray-300 rounded hover:bg-bgImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
-    style={{ backgroundImage: `url(${bgImage})` }}>
+    <div
+      className="flex-grow p-4 border border-gray-300 rounded hover:bg-bgImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div className="flex justify-between mb-4">
         <div>
           <div className="text-xl font-bold">{currentDate}</div>
           <div className="text-md">{currentDay}</div>
         </div>
         <button
-          className="px-5 py-3 text-white bg-[#a359e4] rounded-xl hover:bg-[#c496ec]"
+          className="px-3 text-white bg-[#a86add] rounded-xl hover:bg-[#9338e4]"
           onClick={handleSaveEntry}
+          type="submit"
         >
           Save
         </button>
       </div>
 
       <textarea
-        className={`w-full h-48 p-2  bg-transparent resize-none border border-gray-600 rounded  ${fontFamily} text-${fontSize} text-${textAlign}`}
+        className={`w-full h-96 p-2  bg-transparent resize-none border border-gray-600 rounded  ${fontFamily} text-${fontSize} text-${textAlign} bg-gray-50/30 text-black`}
         placeholder="Write your entry here..."
+        id="comment"
         value={comment}
         onChange={handleCommentChange}
-        style={{ fontFamily: fontFamily, fontSize: `${fontSize}px`, textAlign: textAlign }}
+        style={{
+          fontFamily: fontFamily,
+          fontSize: `${fontSize}px`,
+          textAlign: textAlign,
+        }}
+
+
       ></textarea>
 
       <div className="flex flex-col sm:flex-row sm:items-center mt-2">
@@ -111,7 +118,7 @@ const Compose = () => {
           </label>
           <select
             id="fontFamily"
-            className="px-2 py-1 border border-gray-300 rounded"
+            className="px-2 py-1 border border-gray-300 rounded "
             value={fontFamily}
             onChange={handleFontFamilyChange}
           >
@@ -132,9 +139,11 @@ const Compose = () => {
             value={fontSize}
             onChange={handleFontSizeChange}
           >
-            <option value={12}>12</option>
+            <option value=  {12}>12</option>
             <option value={14}>14</option>
             <option value={16}>16</option>
+            <option value={17}>17</option>
+            <option value={18}>18</option>
             {/* Add more font size options as needed */}
           </select>
         </div>
@@ -161,36 +170,38 @@ const Compose = () => {
           </label>
           <input
             type="file"
-            id="imageUpload"
+            id="images"
             className="hidden"
             accept="image/*"
             multiple
             onChange={handleImageUpload}
           />
           <button
-            className="px-4 py-2 text-white bg-[#9b44e7] rounded hover:bg-[#a17ec0]"
-            onClick={() => document.getElementById('imageUpload').click()}
+            className="px-4 py-2 text-white bg-[#a86add] rounded hover:bg-[#9338e4]"
+            onClick={() => document.getElementById("images").click()}
           >
             Upload
           </button>
         </div>
+        
       </div>
 
-      {images.length > 0 && (
+      {/* {images.length > 0 && (
         <div className="mt-4 grid gap-4 grid-cols-2 sm:grid-cols-3">
           {images.map((image, index) => (
             <div key={index} className="relative">
               <img
-                className="w-21 h-21 object-cover object-center rounded-xl"
+                className="w-72 h-44 object-cover object-center rounded-xl"
                 src={image}
                 alt="Inserted"
               />
             </div>
           ))}
         </div>
-      )}
+      )}  */}
+      
 
-      <div className="text-xs mt-4 text-right text-gray-500">
+      {/* <div className="text-xs mt-4 text-right text-gray-500">
         {savedEntry && (
           <div>
             Entry saved!
@@ -198,8 +209,11 @@ const Compose = () => {
             {savedEntry}
           </div>
         )}
-      </div>
+      </div> */}
+      <div className="h-40 sm:h-32 md:h-34 lg:h-48 xl:h-50"></div>
+
     </div>
+    
   );
 };
 
