@@ -1,5 +1,5 @@
 
-import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/Bs';
+import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
 import { SiGmail } from 'react-icons/Si';
 const Footer = () => {
   return (
