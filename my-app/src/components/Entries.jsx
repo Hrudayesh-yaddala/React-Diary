@@ -1,5 +1,3 @@
-
-
 // import backImage from "../Images/background.jpg";
 // import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
@@ -139,10 +137,6 @@
 // export default Entries;
 // module.exports= {Entries,handleDeleteEntry};
 
-
-
-
-
 import backImage from "../Images/background.jpg";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -157,45 +151,43 @@ const Entries = () => {
     fetchEntries();
   }, []);
 
-
   const fetchEntries = async () => {
-        try {
-          const token = localStorage.getItem("token");
-    
-          if (!token) {
-            console.error("Token not found.");
-            return;
-          }
-    
-          const response = await axios.get(
-            "http://localhost:3000/api/user/entries",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-    
-          console.log(response);
-          // console.log(response.data);
-    
-          if (response.status === 200) {
-            console.log(diary);
-            setEntries(response.data.entries);
-            // toast.success("Entries fetched successfully");
-            console.log(diary);
-          }
-          if(response.status===500){
-            toast.failure("Internal Server Error");
-          }
-           else {
-            console.error("Unexpected response:", response.status, response.data);
-          }
-        } catch (error) {
-          console.log("Error fetching entries:", error);
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token not found.");
+        return;
+      }
+
+      const response = await axios.get(
+        "http://localhost:3000/api/user/entries",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      };
-    const handleDeleteEntry = async (id) => {
+      );
+
+      console.log(response);
+      // console.log(response.data);
+
+      if (response.status === 200) {
+        console.log(diary);
+        setEntries(response.data.entries);
+        // toast.success("Entries fetched successfully");
+        console.log(diary);
+      }
+      if (response.status === 500) {
+        toast.failure("Internal Server Error");
+      } else {
+        console.error("Unexpected response:", response.status, response.data);
+      }
+    } catch (error) {
+      console.log("Error fetching entries:", error);
+    }
+  };
+  const handleDeleteEntry = async (id) => {
     try {
       const response = await axios.delete(
         `http://localhost:3000/api/user/entries/${id}`
@@ -204,26 +196,26 @@ const Entries = () => {
         toast.success(response.data.message);
         fetchEntries();
       }
-      if(response.status===500) toast.failure("Internal Server Error");
+      if (response.status === 500) toast.failure("Internal Server Error");
     } catch (error) {
-      console.error ("Error deleting entry:", error);
+      console.error("Error deleting entry:", error);
       toast.error("Failed to delete entry");
     }
   };
 
   return (
     <div
-    className="bg-[#deb7ff] flex-grow text-center hover:bg-backImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${backImage})` }}>
-      
+      className="bg-[#deb7ff] flex-grow text-center hover:bg-backImage focus:bg-startImage  bg-cover bg-center bg-no-repeat pt-5"
+      style={{ backgroundImage: `url(${backImage})` }}
+    >
       <div className="container mx-auto">
-        <div>
-          <h1 className="text-3xl font-semibold mb-2 text-center top-5">
+        <div className="">
+          <h1 className="text-3xl font-semibold mb-2 text-center top-5 text-black ">
             {localStorage.getItem("firstname") + "'s" + " " + "Journal"}
           </h1>
-          <div className="flex justify-center md:justify-end mb-3">
+          <div className="flex flex-col my-3">
             <Link
-              className="px-4 py-3 text-white text-lg bg-purple-300 bg-[#a86add] rounded hover:bg-purple-400 mr-2 sm:text-base lg:text-lg"
+              className="px-2 py-2 text-white text-lg bg-purple-300 rounded hover:bg-purple-400 mr-2 sm:text-base lg:text-lg place-self-end w-fit"
               to={"/compose"}
             >
               + NEW ENTRY
@@ -238,7 +230,7 @@ const Entries = () => {
                 <th className="border p-2">Entry</th>
                 <th className="border p-2">Date Created</th>
                 <th className="border p-2">View</th>
-                <th className="border p-2"></th>
+                <th className="border p-2">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -256,17 +248,14 @@ const Entries = () => {
                   <td className="border p-3">
                     <Link
                       to={`/entries/${entry?._id}`} // Assuming /entries/:id is the route for individual entry
-                      className="px-3 py-2 text-white text-sm bg-purple-300 bg-[#a86add] rounded hover:bg-purple-400 mr-2 sm:text-base lg:text-sm"
+                      className="px-3 py-2 text-white text-sm bg-purple-300  rounded hover:bg-purple-400 mr-2 sm:text-base lg:text-sm"
                     >
                       VIEW
                     </Link>
                   </td>
-                  <td className="border p-3">
-                    <button
-                      onClick={() => handleDeleteEntry(entry?._id)}
-                      className="bg-white"
-                    >
-                      <MdDelete className="text-black" />
+                  <td className="border">
+                    <button onClick={() => handleDeleteEntry(entry?._id)}>
+                      <MdDelete className="text-red-500 hover:scale-110 ease-in-out text-xl hover:text-red-700" />
                     </button>
                   </td>
                 </tr>
@@ -281,4 +270,3 @@ const Entries = () => {
 };
 
 export default Entries;
-

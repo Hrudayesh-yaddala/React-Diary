@@ -18,7 +18,7 @@ cloudinary.config({
   api_secret: "gpwMKVwgMflyQIRncoQTmu3mRCg",
 });
 
-const mongoURI = process.env.MONGO_URL;
+const mongoURI = process.env.MONGODB_URL;
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,

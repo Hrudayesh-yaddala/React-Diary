@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import backImage from '../Images/background.jpg';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-// const handleDeleteEntry=require('./Entries')
 const SingleEntry = () => {
   const { id } = useParams();
   const [entry, setEntry] = useState(null);
@@ -36,7 +33,7 @@ const SingleEntry = () => {
   }
 
   return (
-    <div className="bg-[#deb7ff] flex-grow text-left hover:bg-backImage focus:bg-startImage  bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${backImage})`}}>
+    <div className=" flex-grow text-left hover:bg-backImage focus:bg-startImage  bg-cover bg-center bg-no-repeat bg-gray-100" style={{ backgroundImage: `url(${backImage})`}}>
       <h1 className="text-3xl font-semibold mb-6 text-center">Entry Details</h1>
       <div className="bg-transparent p-6  rounded-lg">
         <h2 className="text-xl font-semibold mb-4">{new Date(entry.date).toLocaleDateString()}</h2>
@@ -48,12 +45,12 @@ const SingleEntry = () => {
               key={index}
               src={image}
               alt={`Image ${index + 1}`}
-              className="w-48 h-48 object-cover"
+              className="object-cover"
             />
           ))}
         </div>
       </div>
-      <div className="h-40 sm:h-32 md:h-34 lg:h-48 xl:h-50"></div>
+      
     </div>
   );
 };

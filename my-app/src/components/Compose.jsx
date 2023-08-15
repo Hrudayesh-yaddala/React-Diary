@@ -88,7 +88,7 @@ const Compose = () => {
           <div className="text-md">{currentDay}</div>
         </div>
         <button
-          className="px-5 py-3 text-white bg-[#a86add] rounded-xl hover:bg-[#9338e4]"
+          className="px-3 text-white bg-[#a86add] rounded-xl hover:bg-[#9338e4]"
           onClick={handleSaveEntry}
           type="submit"
         >
@@ -97,7 +97,7 @@ const Compose = () => {
       </div>
 
       <textarea
-        className={`w-full h-96 p-2  bg-transparent resize-none border border-gray-600 rounded  ${fontFamily} text-${fontSize} text-${textAlign}`}
+        className={`w-full h-96 p-2  bg-transparent resize-none border border-gray-600 rounded  ${fontFamily} text-${fontSize} text-${textAlign} bg-gray-50/30 text-black`}
         placeholder="Write your entry here..."
         id="comment"
         value={comment}
@@ -107,6 +107,8 @@ const Compose = () => {
           fontSize: `${fontSize}px`,
           textAlign: textAlign,
         }}
+
+
       ></textarea>
 
       <div className="flex flex-col sm:flex-row sm:items-center mt-2">
