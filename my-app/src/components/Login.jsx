@@ -33,7 +33,7 @@ const Login = () => {
         console.log("entered successfully")
         const { message, firstname } = response.data;
         toast.success(`${message}. Welcome, ${firstname}!`);
-        toast.success("Redirecting to home");
+        // toast.success("Redirecting to home");
         localStorage.setItem("token",response.data.accessToken)
         localStorage.setItem("firstname",response.data.firstname)
         setTimeout(()=>{
@@ -64,7 +64,7 @@ const Login = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email Address"
-          className="border border-gray-400 rounded px-4 py-2 mb-4 w-full md:w-80 lg:w-96"
+          className="border border-gray-400 rounded px-4 py-2 mb-4 w-full md:w-80 lg:w-96 "
           // required
         />
         <input
@@ -78,12 +78,12 @@ const Login = () => {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white rounded px-4 py-2 mb-4 w-full md:w-80 lg:w-96 hover:bg-blue-600"
+          className="bg-[#a86add] text-white rounded px-4 py-2 mb-4 w-full md:w-80 lg:w-96  hover:bg-[#9338e4]"
         >
           Sign In
         </button>
       </form>
-      <p className="text-center">Dont have an account? <a href="/Register" className="text-blue-500 hover:underline">Sign-up here</a></p>
+      <p className="text-center">Dont have an account? <a href="/Register" className="text-purple-800 hover:text-[#9338e4]">Sign-up here</a></p>
     </div>
   );
 };

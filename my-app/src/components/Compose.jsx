@@ -55,7 +55,7 @@ const Compose = () => {
         toast.success("Entry Saved Successfully!!");
           setTimeout(()=>{
           navigate("/home");
-          },5000)
+          },2000)
           
       }
       if(response.status===500) toast.error("Internal server error");
@@ -88,8 +88,9 @@ const Compose = () => {
           <div className="text-md">{currentDay}</div>
         </div>
         <button
-          className="px-5 py-3 text-white bg-[#a359e4] rounded-xl hover:bg-[#c496ec]"
+          className="px-5 py-3 text-white bg-[#a86add] rounded-xl hover:bg-[#9338e4]"
           onClick={handleSaveEntry}
+          type="submit"
         >
           Save
         </button>
@@ -115,7 +116,7 @@ const Compose = () => {
           </label>
           <select
             id="fontFamily"
-            className="px-2 py-1 border border-gray-300 rounded"
+            className="px-2 py-1 border border-gray-300 rounded "
             value={fontFamily}
             onChange={handleFontFamilyChange}
           >
@@ -139,6 +140,8 @@ const Compose = () => {
             <option value=  {12}>12</option>
             <option value={14}>14</option>
             <option value={16}>16</option>
+            <option value={17}>17</option>
+            <option value={18}>18</option>
             {/* Add more font size options as needed */}
           </select>
         </div>
@@ -172,12 +175,13 @@ const Compose = () => {
             onChange={handleImageUpload}
           />
           <button
-            className="px-4 py-2 text-white bg-[#9b44e7] rounded hover:bg-[#a17ec0]"
+            className="px-4 py-2 text-white bg-[#a86add] rounded hover:bg-[#9338e4]"
             onClick={() => document.getElementById("images").click()}
           >
             Upload
           </button>
         </div>
+        
       </div>
 
       {/* {images.length > 0 && (
@@ -193,6 +197,7 @@ const Compose = () => {
           ))}
         </div>
       )}  */}
+      
 
       {/* <div className="text-xs mt-4 text-right text-gray-500">
         {savedEntry && (
@@ -203,7 +208,10 @@ const Compose = () => {
           </div>
         )}
       </div> */}
+      <div className="h-40 sm:h-32 md:h-34 lg:h-48 xl:h-50"></div>
+
     </div>
+    
   );
 };
 

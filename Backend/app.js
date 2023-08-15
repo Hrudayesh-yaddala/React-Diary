@@ -18,7 +18,7 @@ cloudinary.config({
   api_secret: "gpwMKVwgMflyQIRncoQTmu3mRCg",
 });
 
-const mongoURI = process.env.MONGODB_URL;
+const mongoURI = process.env.MONGO_URL;
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
@@ -58,6 +58,10 @@ app.post(
 
     try {
       // Upload each image to Cloudinary
+      const { comment } = req.body;
+      if (!comment) {
+        return res.status(400).json({ message: "Fill details properly" });
+      }
       for (const file of files) {
         const result = await cloudinary.uploader.upload(file.path);
         uploadedImages.push(result.secure_url);
@@ -73,7 +77,7 @@ app.post(
 
       await entry.save();
 
-      return res.status(200).json(entry);
+      return res.status(200).json({ message:"Entry successfully created",entry});
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: "Failed to upload images" });

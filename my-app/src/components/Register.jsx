@@ -66,7 +66,7 @@ const Register = () => {
         </div>
         
         <div className="flex flex-col">
-          <label htmlFor="lastname">lastname</label>
+          <label htmlFor="lastname">lastName</label>
           <input className="p-2 border border-gray-500 rounded-md" type="text" name="lastname" id="lastname" onChange={handleChange}/>
         </div>
         
@@ -85,11 +85,11 @@ const Register = () => {
           <input className="p-2 border border-gray-500 rounded-md" type="password" name="confirmpassword" id="confirmpassword" onChange={(e)=>setConfirmPassword(e.target.value)}/>
         </div>
 
-        <input type="submit" value="Register" className="bg-orange-400 p-2 text-white font-bold cursor-pointer" />
+        <button type="submit" className="bg-[#a86add] text-white rounded px-4 py-2 mb-4 w-full md:w-72 lg:w-52  hover:bg-[#9338e4]">Register</button>
       </form>
       <p className="text-center mt-5">
         Already have an account?{" "}
-        <a href="/login" className="text-blue-500 hover:underline">
+        <a href="/login" className="text-purple-900 hover:underline">
           Login here
         </a>
       </p>

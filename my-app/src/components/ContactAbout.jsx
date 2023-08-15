@@ -43,8 +43,11 @@ const ContactAbout = () => {
   }
 
   return (
-    <section className="text-gray-600 body-font relative hover:bg-startImage focus:bg-startImage  bg-cover bg-center bg-no-repeat">
-        <h1 className="text-3xl mb-1 font-bold title-font text-center">Feedback</h1>
+    <section className="text-black-600 body-font relative hover:bg-startImage focus:bg-startImage  bg-cover bg-center bg-no-repeat">
+        <h1 class="mb-12 pb-4 text-center text-5xl font-bold relative">Support
+  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-black"></div>
+</h1>
+
       <div className="container px-5 py-12 mx-auto flex flex-wrap items-center justify-center">
         <div className="lg:w-1/2 md:w-1/2 bg-gray-300 h-96 overflow-hidden mb-8 lg:mb-0">
           <iframe
@@ -55,15 +58,15 @@ const ContactAbout = () => {
             
             style={{ filter: "grayscale(1) contrast(1.2) opacity(0.4)" }}
           ></iframe>
-          <div className="absolute bottom-0 left-0 p-6">
-            <h2 className="text-sm text-white font-medium">ADDRESS</h2>
-            <p className="text-sm text-white">Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter</p>
-          </div>
+         
+
+
         </div>
         <div className="lg:w-5/12 md:w-1/2 bg-transparent flex flex-col md:ml-auto w-full md:py-8">
           
           <p className="leading-relaxed mb-5 text-gray-900 text-center text-lg">
-            Any questions or remarks? Just write us a message
+          For more info and support, feel free to contact us
+
           </p>
           <div className="relative mb-4">
             <label htmlFor="name" className="leading-7 text-md text-gray-900">Name</label>
@@ -103,8 +106,8 @@ const ContactAbout = () => {
             Submit
           </button> 
           {/* <input type="submit" value="Submit" className="text-white bg-[#a86add] border-0 py-2 px-6 focus:outline-none hover:bg-[#9338e4] rounded text-xl w-full" /> */}
-          <p className="text-xs text-gray-500 mt-3 text-center">
-            Chicharrones blog helvetica normcore iceland tousled brook viral artisan.
+          <p className="text-sm text-black mt-3 text-center">
+          Discover the power of daily journaling and unlock a deeper connection with yourself.
           </p>
         </div>
       </div>

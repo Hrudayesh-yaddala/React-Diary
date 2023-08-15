@@ -44,7 +44,7 @@ const Contact = () => {
   }
 
   return (
-    <section className="text-gray-600 body-font relative hover:bg-startImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
+    <section className="text-black body-font relative hover:bg-startImage focus:bg-startImage  bg-cover bg-center bg-no-repeat"
     style={{ backgroundImage: `url(${backImage})` }}>
       <div className="container px-5 py-12 mx-auto flex flex-wrap items-center justify-center">
         <div className="lg:w-1/2 md:w-1/2 bg-gray-300 h-96 overflow-hidden mb-8 lg:mb-0">
@@ -56,16 +56,18 @@ const Contact = () => {
             
             style={{ filter: "grayscale(1) contrast(1.2) opacity(0.4)" }}
           ></iframe>
-          <div className="absolute bottom-0 left-0 p-6">
+          {/* <div className="absolute bottom-0 left-0 p-6">
             <h2 className="text-sm text-white font-medium">ADDRESS</h2>
             <p className="text-sm text-white">Photo booth tattooed prism, portland taiyaki hoodie neutra typewriter</p>
-          </div>
+          </div> */}
         </div>
         <div className="lg:w-5/12 md:w-1/2 bg-transparent flex flex-col md:ml-auto w-full md:py-8">
-          <h1 className="text-3xl mb-1 font-bold title-font text-center">Feedback</h1>
-          <p className="leading-relaxed mb-5 text-gray-900 text-center text-lg">
+          <h1 class="mb-12 pb-4 text-center text-5xl font-bold relative">Feedback
+  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-black"></div>
+</h1>
+          <h5 className="leading-relaxed mb-5 text-black text-center text-lg">
             Any questions or remarks? Just write us a message
-          </p>
+          </h5>
           <div className="relative mb-4">
             <label htmlFor="name" className="leading-7 text-md text-gray-900">Name</label>
             <input
@@ -104,11 +106,12 @@ const Contact = () => {
             Submit
           </button> 
           {/* <input type="submit" value="Submit" className="text-white bg-[#a86add] border-0 py-2 px-6 focus:outline-none hover:bg-[#9338e4] rounded text-xl w-full" /> */}
-          <p className="text-xs text-gray-500 mt-3 text-center">
-            Chicharrones blog helvetica normcore iceland tousled brook viral artisan.
+          <p className="text-md text-white font-bold mt-3 text-center">
+          Feel free to reach out to us anytime. We're here to assist you
           </p>
         </div>
       </div>
+      <div className="h-40 sm:h-32 md:h-34 lg:h-48 xl:h-50"></div>
     </section>
   );
 };
