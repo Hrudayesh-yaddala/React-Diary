@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/Bs';
 import { SiGmail } from 'react-icons/Si';
 const Footer = () => {
