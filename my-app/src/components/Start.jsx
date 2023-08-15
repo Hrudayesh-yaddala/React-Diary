@@ -23,24 +23,10 @@ const Start = () => {
       
       
       <div className="absolute md:top-12 right-10 mt-4 mr-10 md:mr-4 top-24">
-<<<<<<< HEAD
-        <Link
-          className="px-4 py-2 text-white text-lg bg-blue-500 rounded hover:bg-blue-600 mr-2 sm:text-base lg:text-lg" to={"/login"}
-        >
-          Login
-        </Link>
-        <Link
-          className="px-4 py-2 text-blue-500 bg-transparent border border-blue-500 rounded hover:text-white hover:bg-blue-500 text-sm sm:text-base lg:text-lg" to={"/register"}
-        >
-          Sign Up
-        </Link>
-      </div>
-=======
         <Link className="px-4 py-2 text-white text-lg bg-[#9338e4] rounded hover:bg-purple-600 mr-2 sm:text-base lg:text-lg" to={"/login"}>Login</Link>
         <Link className="px-4 py-2 text-purple-500 bg-transparent border border-purple-900 rounded hover:text-white hover:bg-[#9338e4] text-sm sm:text-base lg:text-lg" to={"/register"}>Sign Up</Link>
       </div>
       <div className="h-40 sm:h-32 md:h-34 lg:h-48 xl:h-50"></div>
->>>>>>> authentication
     </div>
   );
 };
