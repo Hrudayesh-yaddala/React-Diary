@@ -2,7 +2,7 @@ import backImage from "../Images/background.jpg";
 import { useState } from "react";
 import axios from "axios";
 import {toast} from "react-hot-toast"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
   const [data,setData] = useState({
@@ -91,9 +91,9 @@ const Register = () => {
       </form>
       <p className="text-center mt-5">
         Already have an account?{" "}
-        <a href="/login" className="text-purple-900 hover:underline">
+        <Link href="/login" className="text-purple-900 hover:underline">
           Login here
-        </a>
+        </Link>
       </p>
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import bgImage from '../Images/bgimage.jpg';
+import { Link, useNavigate } from "react-router-dom";
 import backImage from '../Images/background.jpg';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
@@ -83,7 +82,7 @@ const Login = () => {
           Sign In
         </button>
       </form>
-      <p className="text-center">Dont have an account? <a href="/Register" className="text-purple-800 hover:text-[#9338e4]">Sign-up here</a></p>
+      <p className="text-center">Dont have an account? <Link to="/register"  className="text-purple-800 hover:text-[#9338e4]">Sign-up here</Link></p>
     </div>
   );
 };
